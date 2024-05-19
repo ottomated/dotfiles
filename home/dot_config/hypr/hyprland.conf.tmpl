@@ -19,7 +19,7 @@ $mainMod = SUPER
 # Programs
 $terminal = kitty
 $fileManager = thunar
-$menu = rofi -show drun -click-to-exit
+$menu = rofi -show drun -click-to-exit -kb-cancel "Escape,MouseSecondary"
 
 # Scripts
 $workspace = bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/workspaces.ts

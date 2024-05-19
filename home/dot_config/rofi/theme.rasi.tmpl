@@ -1,0 +1,109 @@
+configuration {
+	modi:                        "drun,filebrowser,window,run";
+	show-icons:                  true;
+	display-drun:                "";
+	drun-display-format:         "{name}";
+	window-format:               "{w}{t}";
+	font:                        "Fira Code 15";
+	icon-theme:                  "Tela-circle-dracula";
+}
+
+* {
+	main-bg:            #11111bc0;
+	main-fg:            #f5f5f5ff;
+	select-bg:          #b442ff80;
+	border:      #b442ffff;
+	select-fg:          transparent;
+	border-color:       transparent;
+}
+
+
+// Main //
+window {
+	width:                       37em;
+	transparency:                "real";
+	fullscreen:                  false;
+	enabled:                     true;
+	cursor:                      "default";
+	spacing:                     0em;
+	padding:                     0em;
+	border:                      2px;
+	border-color:                @border;
+	background-color:            @main-bg;
+	border-radius:               0.5em;
+}
+mainbox {
+	enabled:                     true;
+	spacing:                     0em;
+	padding:                     0em;
+	orientation:                 vertical;
+	children:                    [ "inputbar" , "listview" ];
+	background-color:            transparent;
+}
+
+// Inputs //
+inputbar {
+	enabled:                     true;
+	spacing:                     0.5em;
+	padding:                     0.5em 0.5em 0em 0.5em;
+	children:                    ["prompt", "entry"];
+	background-color:            @main-bg;
+}
+prompt {
+	padding:                     0 0.5em;
+	background-color:            transparent;
+	background-image:            url("{{ .chezmoi.sourceDir }}/../assets/profile-transparent.svg", both);
+}
+entry {
+	background-color:            transparent;
+	text-color:                  @main-fg;
+}
+
+listview {
+	padding:                     1em;
+	spacing:                     0em;
+	enabled:                     true;
+	columns:                     1;
+	lines:                       10;
+	cycle:                       true;
+	dynamic:                     true;
+	scrollbar:                   false;
+	layout:                      vertical;
+	reverse:                     false;
+	expand:                      false;
+	fixed-height:                true;
+	fixed-columns:               true;
+	cursor:                      "default";
+	background-color:            @main-bg;
+	text-color:                  @main-fg;
+}
+
+// Elements //
+element {
+	enabled:                     true;
+	spacing:                     0.5em;
+	padding:                     0.2em;
+	cursor:                      pointer;
+	background-color:            transparent;
+	text-color:                  @main-fg;
+	border-color:                transparent;
+	border:                      2px;
+	border-radius:               0.25em;
+}
+element selected.normal {
+	background-color:            @select-bg;
+	border-color:                @border;
+}
+element-icon {
+	size:                        1em;
+	cursor:                      inherit;
+	background-color:            transparent;
+	text-color:                  inherit;
+}
+element-text {
+	vertical-align:              0.5;
+	horizontal-align:            0.0;
+	cursor:                      inherit;
+	background-color:            transparent;
+	text-color:                  inherit;
+}

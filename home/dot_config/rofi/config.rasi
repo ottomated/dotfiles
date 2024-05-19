@@ -1,5 +1,1 @@
-@theme "/usr/share/rofi/themes/purple.rasi"
-
-configuration {
-	click-to-exit: true;
-}
+@theme "./theme.rasi"
