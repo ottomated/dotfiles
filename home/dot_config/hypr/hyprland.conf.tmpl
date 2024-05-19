@@ -1,0 +1,166 @@
+{{- if lookPath "nvidia-smi" }}
+env = LIBVA_DRIVER_NAME,nvidia
+env = XDG_SESSION_TYPE,wayland
+env = GBM_BACKEND,nvidia-drm
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+env = WLR_NO_HARDWARE_CURSORS,1
+
+monitor={{ .monitors.left }}, 1920x1080, 0x0, 1
+monitor={{ .monitors.right }}, 2560x1080, 1920x0, 1
+{{- else }}
+monitor={{ .monitors.left }},1920x1080@60,0x0,1
+monitor={{ .monitors.right }},1920x1080@60,1920x0,1
+{{- end }}
+monitor=,preferred,auto,1
+
+
+$mainMod = SUPER
+
+# Programs
+$terminal = kitty
+$fileManager = thunar
+$menu = rofi -show drun -click-to-exit
+
+# Scripts
+$workspace = bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/workspaces.ts
+
+# Some default env vars.
+env = XCURSOR_SIZE,22
+env = QT_QPA_PLATFORMTHEME,qt5ct # change to qt6ct if you have that
+
+# For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+input {
+	kb_layout = us
+	kb_variant =
+	kb_model =
+	kb_options =
+	kb_rules =
+
+	follow_mouse = 1
+	mouse_refocus = false
+
+	touchpad {
+		natural_scroll = no
+	}
+	sensitivity = 0
+}
+
+general {
+	gaps_in = 2
+	gaps_out = 6
+	border_size = 2
+	col.active_border = rgba(b442ffee) rgba(3633ffee) 45deg
+	col.inactive_border = rgba(595959aa)
+
+	layout = dwindle
+	allow_tearing = false
+}
+
+decoration {
+	rounding = 4
+	
+	blur {
+		enabled = true
+		size = 3
+		passes = 1
+	}
+
+	drop_shadow = yes
+	shadow_range = 4
+	shadow_render_power = 3
+	col.shadow = rgba(1a1a1aee)
+}
+
+animations {
+	enabled = yes
+
+	# Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+
+	bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+	animation = windows, 1, 4, myBezier
+	animation = windowsOut, 1, 4, default, popin 80%
+	animation = border, 1, 3, default
+	animation = borderangle, 1, 8, default
+	animation = fade, 1, 3, default
+	animation = workspaces, 1, 2, default
+
+	animation = specialWorkspace, 1, 6, default, slidefadevert -50%
+}
+
+dwindle {
+	pseudotile = yes
+	preserve_split = yes
+}
+
+# Window rules
+windowrulev2 = suppressevent maximize, class:.*
+windowrule = float, title:^(Picture-in-Picture)$ # Firefox videos
+windowrule = float, ^(file-roller)$
+
+windowrule = workspace 8, discord
+windowrule = workspace 8, Slack
+windowrule = workspace 9, tidal-hifi
+windowrule = workspace 10, com.obsproject.Studio
+windowrule = move onscreen cursor, ^(galendae)$
+
+# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+bind = $mainMod, Return, exec, $terminal
+bind = $mainMod, T, togglespecialworkspace
+bind = CONTROLALT, T, exec, $terminal
+bind = CONTROL_SUPER_ALT, Z, exec, systemctl suspend
+bind = CONTROL_SUPER_ALT, S, exec, systemctl poweroff
+bind = CONTROL_SUPER_ALT, R, exec, systemctl reboot
+bind = $mainMod, Q, killactive, 
+bind = ALT, F4, killactive,
+bind = $mainMod, M, exit, 
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, V, togglefloating, 
+bindr = $mainMod, D, exec, pkill rofi || $menu
+bind = $mainMod, J, togglesplit, # dwindle
+bind = $mainMod, F, fullscreen
+bind = , PRINT, exec, hyprshot -m region
+
+# Switch workspaces with mainMod + [0-9]
+bind = $mainMod, 1, exec, $workspace switch 1
+bind = $mainMod, 2, exec, $workspace switch 2
+bind = $mainMod, 3, exec, $workspace switch 3
+bind = $mainMod, 4, exec, $workspace switch 4
+bind = $mainMod, 5, exec, $workspace switch 5
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = $mainMod SHIFT, 1, exec, $workspace move 1
+bind = $mainMod SHIFT, 2, exec, $workspace move 2
+bind = $mainMod SHIFT, 3, exec, $workspace move 3
+bind = $mainMod SHIFT, 4, exec, $workspace move 4
+bind = $mainMod SHIFT, 5, exec, $workspace move 5
+
+# move active window to the other monitor
+bind = $mainMod SHIFT, left, exec, $workspace movemonitor
+bind = $mainMod SHIFT, right, exec, $workspace movemonitor
+bind = $mainMod, left, exec, $workspace switchmonitor
+bind = $mainMod, right, exec, $workspace switchmonitor
+
+workspace=1,monitor:{{ .monitors.right }},persistent:true
+workspace=2,monitor:{{ .monitors.right }},persistent:true
+workspace=3,monitor:{{ .monitors.right }},persistent:true
+workspace=4,monitor:{{ .monitors.right }},persistent:true
+workspace=5,monitor:{{ .monitors.right }},persistent:true
+workspace=6,monitor:{{ .monitors.left }},persistent:true
+workspace=7,monitor:{{ .monitors.left }},persistent:true
+workspace=8,monitor:{{ .monitors.left }},persistent:true
+workspace=9,monitor:{{ .monitors.left }},persistent:true
+workspace=10,monitor:{{ .monitors.left }},persistent:true
+
+workspace = special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%] kitty -o background_opacity=0.5
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+exec-once=waybar
+exec-once=[silent] Discord
+exec-once=[silent] flatpak run com.slack.Slack
+exec-once=[silent] 1password --silent
+exec-once=hyprpaper
+exec-once=[silent] tidal-hifi

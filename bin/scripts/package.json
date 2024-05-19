@@ -1,0 +1,11 @@
+{
+	"name": "scripts",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest",
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"dbus-next": "^0.10.2"
+	}
+}

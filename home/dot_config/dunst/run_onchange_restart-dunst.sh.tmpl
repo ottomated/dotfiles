@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# hash: {{ include "dot_config/dunst/dunstrc" | sha256sum }}
+killall dunst
+dunst > /dev/null 2>&1 & disown
+echo "Restarted dunst"

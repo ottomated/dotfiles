@@ -1,0 +1,101 @@
+{
+  "layer": "top",
+  "height": 34,
+  "spacing": 6,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-right": [
+    "custom/media",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "clock",
+    "tray"
+  ],
+
+  // Module configuration
+  "hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}    {windows}",
+    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "sort-by": "id",
+    "window-rewrite-default": "?",
+    "window-rewrite": {
+      "class<org.mozilla.firefox>": "",
+      "foot": "",
+      "class<kitty>": "",
+      "class<code>": "",
+      "class<steam>": "",
+      "class<discord>": "",
+      "class<Slack>": "",
+      "class<tidal-hifi>": "",
+      "class<1Password>": "",
+      "class<thunar>": "",
+      "class<Gimp-2.10>": "",
+      "class<com.obsproject.Studio>": "",
+      "Celeste": "",
+      "EverestSplash-linux": ""
+    },
+    "format-icons": {
+      "6": "1",
+      "7": "2",
+      "8": "3",
+      "9": "4",
+      "10": "5"
+    }
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%I:%M:%S %p} ",
+    "on-click": "killall --quiet galendae || {{ .chezmoi.sourceDir }}/../bin/galendae"
+  },
+  "cpu": {
+    "format": "CPU {usage}% ",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    }
+  },
+  "memory": {
+    "format": "RAM {used:0.1f} GB ",
+    "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    }
+  },
+  "network": {
+    "interval": 2,
+    "format-ethernet": " {bandwidthDownBits} |  {bandwidthUpBits} ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{volume}% {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/media": {
+    "exec": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/display.ts",
+    "on-click": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts playpause",
+    "smooth-scrolling-threshold": 0,
+    "on-scroll-down": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts next",
+    "on-click-right": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts next",
+    "on-scroll-up": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts previous",
+    "return-type": "json"
+  }
+}

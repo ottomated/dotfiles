@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# hash: {{ include "dot_config/waybar/config.tmpl" | sha256sum }}
+# hash: {{ include "dot_config/waybar/style.css" | sha256sum }}
+killall waybar
+waybar > /dev/null 2>&1 & disown
+echo "Restarted waybar"
