@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "config.tmpl": "jsonc",
+    "hypr*.conf.tmpl": "properties",
+    "*.sh.tmpl": "shellscript"
+  }
+}

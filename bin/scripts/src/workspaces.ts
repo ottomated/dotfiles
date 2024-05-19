@@ -25,7 +25,7 @@ if (cmd === 'switchmonitor' || cmd === 'movemonitor') {
 		await $`hyprctl dispatch movetoworkspacesilent ${other.activeWorkspace.id}`;
 	}
 } else if (cmd === 'switch' || cmd === 'move') {
-	const num = parseInt(process.argv[3]);
+	const num = parseInt(process.argv[3] ?? '');
 	if (!cmd || isNaN(num)) process.exit(0);
 	const workspace: {
 		monitor: string;
@@ -39,4 +39,21 @@ if (cmd === 'switchmonitor' || cmd === 'movemonitor') {
 	} else if (cmd === 'move') {
 		await $`hyprctl dispatch movetoworkspacesilent ${target}`;
 	}
+} else if (cmd === 'next' || cmd === 'previous') {
+	const workspace: {
+		monitor: string;
+		id: number | string;
+	} = await $`hyprctl -j activeworkspace`.json();
+
+	if (typeof workspace.id !== 'number') process.exit(1);
+
+	const monitor = monitorMap[workspace.monitor];
+	if (!monitor) process.exit(1);
+
+	const index = monitor.indexOf(workspace.id);
+	if (index === undefined || index === -1) process.exit(1);
+
+	const delta = cmd === 'next' ? 1 : -1;
+	const nextIndex = (index + delta + monitor.length) % monitor.length;
+	await $`hyprctl dispatch workspace ${monitor[nextIndex]}`;
 }

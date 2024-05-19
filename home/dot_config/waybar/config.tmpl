@@ -21,8 +21,8 @@
   },
   "hyprland/workspaces": {
     "format": "{icon}    {windows}",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "on-scroll-up": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/workspaces.ts previous",
+    "on-scroll-down": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/workspaces.ts next",
     "sort-by": "id",
     "window-rewrite-default": "?",
     "window-rewrite": {
@@ -85,7 +85,7 @@
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
-      "default": ["", "", ""],
+      "default": ["", "", ""]
     },
     "on-click": "pavucontrol"
   },

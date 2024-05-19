@@ -141,16 +141,16 @@ bind = $mainMod SHIFT, right, exec, $workspace movemonitor
 bind = $mainMod, left, exec, $workspace switchmonitor
 bind = $mainMod, right, exec, $workspace switchmonitor
 
-workspace=1,monitor:{{ .monitors.right }},persistent:true
-workspace=2,monitor:{{ .monitors.right }},persistent:true
-workspace=3,monitor:{{ .monitors.right }},persistent:true
-workspace=4,monitor:{{ .monitors.right }},persistent:true
-workspace=5,monitor:{{ .monitors.right }},persistent:true
-workspace=6,monitor:{{ .monitors.left }},persistent:true
-workspace=7,monitor:{{ .monitors.left }},persistent:true
-workspace=8,monitor:{{ .monitors.left }},persistent:true
-workspace=9,monitor:{{ .monitors.left }},persistent:true
-workspace=10,monitor:{{ .monitors.left }},persistent:true
+workspace=1,monitor:{{ .monitors.right }}
+workspace=2,monitor:{{ .monitors.right }}
+workspace=3,monitor:{{ .monitors.right }}
+workspace=4,monitor:{{ .monitors.right }}
+workspace=5,monitor:{{ .monitors.right }}
+workspace=6,monitor:{{ .monitors.left }}
+workspace=7,monitor:{{ .monitors.left }}
+workspace=8,monitor:{{ .monitors.left }}
+workspace=9,monitor:{{ .monitors.left }}
+workspace=10,monitor:{{ .monitors.left }}
 
 workspace = special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%] kitty -o background_opacity=0.5
 
