@@ -1,8 +1,6 @@
 # TODO
 
-- customize rofi theme
 - set up downsort on a cron job
-- nerd font
 
 - dunst show depending on if OBS is open
 - autoscroll in wayland
