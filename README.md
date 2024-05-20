@@ -7,3 +7,5 @@
 - thunar
 - kitty
 - bun
+- bat
+- zoxide

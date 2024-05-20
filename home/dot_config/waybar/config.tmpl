@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 34,
+  "height": 36,
   "spacing": 6,
 
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
@@ -13,7 +13,6 @@
     "clock",
     "tray"
   ],
-
   // Module configuration
   "hyprland/window": {
     "max-length": 200,
@@ -49,6 +48,26 @@
       "8": "3",
       "9": "4",
       "10": "5"
+    },
+    "persistent-workspaces": {
+      "{{ .monitors.right }}": [1, 2, 3, 4, 5],
+      "{{ .monitors.left }}": [6, 7, 8, 9, 10]
+    }
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "Tela-circle-dracula",
+    "tooltip-format": "{title}",
+    "on-click": "minimize-raise",
+    "on-click-middle": "close",
+    "ignore-list": ["Alacritty"],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Visual Studio Code": "Code"
     }
   },
   "tray": {
