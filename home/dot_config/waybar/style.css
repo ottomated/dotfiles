@@ -65,7 +65,7 @@ button:hover {
   animation: red-blink 0.4s linear infinite alternate;
 }
 
-/* https://colordesigner.io/gradient-generator */
+/* https://colordesigner.io/gradient-generator/?mode=lch#3633FF-B442FF */
 #clock {
   background-color: #3633ff;
   min-width: 110px;
