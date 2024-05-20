@@ -1,0 +1,12 @@
+[package]
+name = "downsort"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.71"
+chrono = "0.4.26"
+filetime = "0.2.21"
+home = "0.5.5"
+regex = "1.8.4"
+which = "6.0.1"

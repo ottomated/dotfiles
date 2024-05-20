@@ -4,5 +4,6 @@
     "hypr*.conf.tmpl": "properties",
     "*.sh.tmpl": "shellscript",
     "*.rasi.tmpl": "rasi"
-  }
+  },
+  "rust-analyzer.linkedProjects": ["bin/downsort/Cargo.toml"]
 }

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# fail if crontab does not exist
+if [ ! -f /etc/anacrontab ]; then
+	echo "Failed to find /etc/anacrontab"
+	exit 1
+fi
+
+# fail if file already contains the cron job
+if grep -q "daily.local" /etc/anacrontab; then
+	echo "Cron job already exists"
+	exit 0
+fi
+
+echo "Installing cron job (requires sudo)"
+echo "1   5   daily.local nice run-parts {{ .chezmoi.homeDir }}/.local/cron.daily" | sudo tee -a /etc/anacrontab >/dev/null
