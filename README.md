@@ -9,3 +9,6 @@
 - bun
 - bat
 - zoxide
+- Fira Code nerd font
+- Inter font
+- anacron
