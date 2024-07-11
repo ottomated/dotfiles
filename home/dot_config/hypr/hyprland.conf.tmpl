@@ -103,6 +103,10 @@ windowrule = workspace 8, Slack
 windowrule = workspace 9, tidal-hifi
 windowrule = workspace 10, com.obsproject.Studio
 windowrule = move onscreen cursor, ^(galendae)$
+windowrule = float, xfce-polkit
+windowrule = maxsize 410 150, xfce-polkit
+windowrule = minsize 410 150, xfce-polkit
+windowrule = stayfocused, xfce-polkit
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, Return, exec, $terminal
@@ -152,7 +156,7 @@ workspace=8,monitor:{{ .monitors.left }}
 workspace=9,monitor:{{ .monitors.left }}
 workspace=10,monitor:{{ .monitors.left }}
 
-workspace = special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%] kitty -o background_opacity=0.7
+workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%] kitty -o background_opacity=0.7
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
@@ -164,3 +168,4 @@ exec-once=[silent] flatpak run com.slack.Slack
 exec-once=[silent] 1password --silent
 exec-once=hyprpaper
 exec-once=[silent] tidal-hifi
+exec-once=/usr/libexec/xfce-polkit

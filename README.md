@@ -9,3 +9,4 @@
 - bun
 - bat
 - zoxide
+- xfce-polkit
