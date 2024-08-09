@@ -113,6 +113,7 @@
   "custom/media": {
     "exec": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/display.ts",
     "on-click": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts playpause",
+    "restart-interval": 120,
     "smooth-scrolling-threshold": 0,
     "on-scroll-down": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts next",
     "on-click-right": "bun {{ .chezmoi.sourceDir }}/../bin/scripts/src/media/actions.ts next",

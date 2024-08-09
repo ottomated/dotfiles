@@ -12,3 +12,4 @@
 - Fira Code nerd font
 - Inter font
 - anacron
+- xfce-polkit
