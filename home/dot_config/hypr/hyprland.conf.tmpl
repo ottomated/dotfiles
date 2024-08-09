@@ -98,6 +98,12 @@ windowrulev2 = suppressevent maximize, class:.*
 windowrule = float, title:^(Picture-in-Picture)$ # Firefox videos
 windowrule = float, ^(file-roller)$
 
+# forceinput on floating vs code windows
+windowrulev2 = center, class:^(Xdg-desktop-portal-gtk)$
+windowrulev2 = stayfocused, class:^(Xdg-desktop-portal-gtk)$
+windowrulev2 = center, floating:1,class:^(Code)$
+windowrulev2 = stayfocused, floating:1,class:^(Code)$
+
 windowrule = workspace 8, discord
 windowrule = workspace 8, Slack
 windowrule = workspace 9, tidal-hifi
@@ -119,7 +125,7 @@ bind = $mainMod, V, togglefloating,
 bindr = $mainMod, D, exec, pkill rofi || $menu
 bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen
-bind = , PRINT, exec, hyprshot -m region
+bind = , PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, exec, $workspace switch 1
@@ -152,14 +158,14 @@ workspace=8,monitor:{{ .monitors.left }}
 workspace=9,monitor:{{ .monitors.left }}
 workspace=10,monitor:{{ .monitors.left }}
 
-workspace = special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%] kitty -o background_opacity=0.7
+workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] kitty -o background_opacity=0.7
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 exec-once=waybar
-exec-once=[silent] Discord
+exec-once=[silent] flatpak run com.discordapp.Discord
 exec-once=[silent] flatpak run com.slack.Slack
 exec-once=[silent] 1password --silent
 exec-once=hyprpaper

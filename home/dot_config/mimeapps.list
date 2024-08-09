@@ -1,3 +1,10 @@
 
 [Default Applications]
 inode/directory=thunar.desktop
+text/plain=code.desktop
+
+[Added Associations]
+image/jpeg=gimp.desktop;
+text/plain=code.desktop;
+inode/directory=code.desktop;
+image/svg+xml=code.desktop;
