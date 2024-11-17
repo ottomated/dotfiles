@@ -2,9 +2,14 @@
 [Default Applications]
 inode/directory=thunar.desktop
 text/plain=code.desktop
+audio/flac=vlc.desktop
 
 [Added Associations]
 image/jpeg=gimp.desktop;
 text/plain=code.desktop;
 inode/directory=code.desktop;
-image/svg+xml=code.desktop;
+image/svg+xml=gimp.desktop;org.mozilla.firefox.desktop;chromium-browser.desktop;code.desktop;
+audio/flac=audacity.desktop;vlc.desktop;
+image/webp=gimp.desktop;
+image/png=gimp.desktop;
+audio/vnd.wave=audacity.desktop;
