@@ -97,8 +97,16 @@ dwindle {
 
 # Window rules
 windowrulev2 = suppressevent maximize, class:.*
-windowrule = float, title:^(Picture-in-Picture)$ # Firefox videos
-windowrule = float, ^(file-roller)$
+windowrulev2 = float, title:^(Picture-in-Picture)$ # Firefox videos
+windowrulev2 = float, class:^(org.gnome.FileRoller)$
+
+# xwaylandvideobridge
+windowrulev2 = opacity 0.0 override, class:^(xwaylandvideobridge)$
+windowrulev2 = noanim, class:^(xwaylandvideobridge)$
+windowrulev2 = noinitialfocus, class:^(xwaylandvideobridge)$
+windowrulev2 = maxsize 1 1, class:^(xwaylandvideobridge)$
+windowrulev2 = noblur, class:^(xwaylandvideobridge)$
+windowrulev2 = nofocus, class:^(xwaylandvideobridge)$
 
 # forceinput on floating vs code windows
 windowrulev2 = center, class:^(Xdg-desktop-portal-gtk)$
@@ -172,7 +180,8 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 exec-once=waybar
-exec-once=[silent] flatpak run com.discordapp.Discord
+exec-once=xwaylandvideobridge
+exec-once=[silent] discord
 exec-once=[silent] flatpak run com.slack.Slack
 exec-once=[silent] 1password --silent
 exec-once=hyprpaper

@@ -1,4 +1,3 @@
-
 [Default Applications]
 inode/directory=thunar.desktop
 text/plain=code.desktop
@@ -8,8 +7,10 @@ audio/flac=vlc.desktop
 image/jpeg=gimp.desktop;
 text/plain=code.desktop;
 inode/directory=code.desktop;
-image/svg+xml=gimp.desktop;org.mozilla.firefox.desktop;chromium-browser.desktop;code.desktop;
+image/svg+xml=gimp.desktop;code.desktop;org.mozilla.firefox.desktop;chromium-browser.desktop;
 audio/flac=audacity.desktop;vlc.desktop;
 image/webp=gimp.desktop;
 image/png=gimp.desktop;
 audio/vnd.wave=audacity.desktop;
+application/x-shellscript=code.desktop;
+application/rss+xml=code.desktop;
