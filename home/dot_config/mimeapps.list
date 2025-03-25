@@ -2,6 +2,16 @@
 inode/directory=thunar.desktop
 text/plain=code.desktop
 audio/flac=vlc.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
+x-scheme-handler/chrome=zen.desktop
+text/html=zen.desktop
+application/x-extension-htm=zen.desktop
+application/x-extension-html=zen.desktop
+application/x-extension-shtml=zen.desktop
+application/xhtml+xml=zen.desktop
+application/x-extension-xhtml=zen.desktop
+application/x-extension-xht=zen.desktop
 
 [Added Associations]
 image/jpeg=gimp.desktop;
@@ -14,3 +24,13 @@ image/png=gimp.desktop;
 audio/vnd.wave=audacity.desktop;
 application/x-shellscript=code.desktop;
 application/rss+xml=code.desktop;
+x-scheme-handler/http=zen.desktop;
+x-scheme-handler/https=zen.desktop;
+x-scheme-handler/chrome=zen.desktop;
+text/html=zen.desktop;
+application/x-extension-htm=zen.desktop;
+application/x-extension-html=zen.desktop;
+application/x-extension-shtml=zen.desktop;
+application/xhtml+xml=zen.desktop;
+application/x-extension-xhtml=zen.desktop;
+application/x-extension-xht=zen.desktop;

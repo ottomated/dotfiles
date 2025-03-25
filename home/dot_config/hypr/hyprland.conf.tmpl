@@ -96,33 +96,34 @@ dwindle {
 }
 
 # Window rules
-windowrulev2 = suppressevent maximize, class:.*
-windowrulev2 = float, title:^(Picture-in-Picture)$ # Firefox videos
-windowrulev2 = float, class:^(org.gnome.FileRoller)$
+windowrule = suppressevent maximize, class:.*
+windowrule = float, title:^Picture-in-Picture$ # Firefox videos
+windowrule = float, class:^org\.gnome\.FileRoller$
+windowrule = float, title:^(Friends List)$ # Steam
 
 # xwaylandvideobridge
-windowrulev2 = opacity 0.0 override, class:^(xwaylandvideobridge)$
-windowrulev2 = noanim, class:^(xwaylandvideobridge)$
-windowrulev2 = noinitialfocus, class:^(xwaylandvideobridge)$
-windowrulev2 = maxsize 1 1, class:^(xwaylandvideobridge)$
-windowrulev2 = noblur, class:^(xwaylandvideobridge)$
-windowrulev2 = nofocus, class:^(xwaylandvideobridge)$
+windowrule = opacity 0.0 override, class:^xwaylandvideobridge$
+windowrule = noanim, class:^xwaylandvideobridge$
+windowrule = noinitialfocus, class:^xwaylandvideobridge$
+windowrule = maxsize 1 1, class:^xwaylandvideobridge$
+windowrule = noblur, class:^xwaylandvideobridge$
+windowrule = nofocus, class:^xwaylandvideobridge$
 
 # forceinput on floating vs code windows
-windowrulev2 = center, class:^(Xdg-desktop-portal-gtk)$
-windowrulev2 = stayfocused, class:^(Xdg-desktop-portal-gtk)$
-windowrulev2 = center, floating:1,class:^(Code)$
-windowrulev2 = stayfocused, floating:1,class:^(Code)$
+windowrule = center, class:^Xdg-desktop-portal-gtk$
+windowrule = stayfocused, class:^Xdg-desktop-portal-gtk$ 
+windowrule = center, floating:1,class:^Code$
+windowrule = stayfocused, floating:1,class:^Code$
 
-windowrule = workspace 8, discord
-windowrule = workspace 8, Slack
-windowrule = workspace 9, tidal-hifi
-windowrule = workspace 10, com.obsproject.Studio
-windowrule = move onscreen cursor, ^(galendae)$
-windowrule = float, xfce-polkit
-windowrule = maxsize 410 150, xfce-polkit
-windowrule = minsize 410 150, xfce-polkit
-windowrule = stayfocused, xfce-polkit
+windowrule = workspace 8, class:^discord$
+windowrule = workspace 8, class:^Slack$
+windowrule = workspace 9, class:^tidal-hifi$
+windowrule = workspace 10, class:^com\.obsproject\.Studio$
+windowrule = move onscreen cursor, class:^galendae$
+windowrule = float, class:^xfce-polkit$
+windowrule = maxsize 410 150, class:^xfce-polkit$
+windowrule = minsize 410 150, class:^xfce-polkit$
+windowrule = stayfocused, class:^xfce-polkit$
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, Return, exec, $terminal
@@ -181,9 +182,11 @@ bindm = $mainMod, mouse:273, resizewindow
 
 exec-once=waybar
 exec-once=xwaylandvideobridge
-exec-once=[silent] discord
+exec-once=[silent] Discord
 exec-once=[silent] flatpak run com.slack.Slack
 exec-once=[silent] 1password --silent
+exec-once=[silent] 1password --silent
+exec-once=[silent] flatpak run --command=/app/bin/launch.sh com.core447.StreamController -b
 exec-once=hyprpaper
 exec-once=[silent] tidal-hifi
 exec-once=/usr/libexec/xfce-polkit
