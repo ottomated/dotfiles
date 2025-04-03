@@ -17,7 +17,7 @@ monitor = ,preferred,auto,1
 $mainMod = SUPER
 
 # Programs
-$terminal = kitty
+$terminal = ghostty
 $fileManager = thunar
 $menu = rofi -show drun -click-to-exit -kb-cancel "Escape,MouseSecondary"
 
@@ -116,10 +116,10 @@ windowrule = stayfocused, class:Xdg-desktop-portal-gtk
 windowrule = center, floating:1,class:Code
 windowrule = stayfocused, floating:1,class:Code
 
-windowrule = workspace 8, class:discord
-windowrule = workspace 8, class:Slack
-windowrule = workspace 9, class:.*tidal-hifi.*
-windowrule = workspace 10, class:com\.obsproject\.Studio
+windowrule = workspace 3, class:discord
+windowrule = workspace 3, class:Slack
+windowrule = workspace 4, class:.*tidal-hifi.*
+windowrule = workspace 5, class:com\.obsproject\.Studio
 windowrule = move onscreen cursor, class:galendae
 windowrule = float, class:xfce-polkit
 windowrule = maxsize 410 150, class:xfce-polkit
@@ -175,7 +175,7 @@ workspace = 8,monitor:{{ .monitors.left }}
 workspace = 9,monitor:{{ .monitors.left }}
 workspace = 10,monitor:{{ .monitors.left }}
 
-workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] $terminal -o background_opacity=0.7
+workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] $terminal --background-opacity=0.7
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow

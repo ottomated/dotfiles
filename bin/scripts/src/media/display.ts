@@ -126,10 +126,10 @@ async function update() {
 		})
 		.join('\n\n─────────────────────────────\n\n');
 
-	const pauseIcon = primaryPlayer.status === 'Playing' ? '' : '';
+	const pauseIcon = primaryPlayer?.status === 'Playing' ? '' : '';
 	console.log(
 		JSON.stringify({
-			text: `${pauseIcon} ${primaryPlayer.title} `,
+			text: `${pauseIcon} ${primaryPlayer?.title ?? 'no player'} `,
 			tooltip,
 		}),
 	);

@@ -1,5 +1,5 @@
 function fish_greeting
-	if test "$TERM" = "xterm-kitty"
+	if test "$TERM" = "xterm-ghostty"
 		set_color purple
 		echo - {O}
 		set_color blue
