@@ -5,13 +5,13 @@ env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 env = WLR_NO_HARDWARE_CURSORS,1
 
-monitor={{ .monitors.left }}, 1920x1080, 0x0, 1
-monitor={{ .monitors.right }}, 2560x1080, 1920x0, 1
+monitor = {{ .monitors.left }}, 1920x1080, 0x0, 1
+monitor = {{ .monitors.right }}, 2560x1080, 1920x0, 1
 {{- else }}
-monitor={{ .monitors.left }},1920x1080@60,0x0,1
-monitor={{ .monitors.right }},1920x1080@60,1920x0,1
+monitor = {{ .monitors.left }},1920x1080@60,0x0,1
+monitor = {{ .monitors.right }},1920x1080@60,1920x0,1
 {{- end }}
-monitor=,preferred,auto,1
+monitor = ,preferred,auto,1
 
 
 $mainMod = SUPER
@@ -97,33 +97,34 @@ dwindle {
 
 # Window rules
 windowrule = suppressevent maximize, class:.*
-windowrule = float, title:^Picture-in-Picture$ # Firefox videos
-windowrule = float, class:^org\.gnome\.FileRoller$
-windowrule = float, title:^(Friends List)$ # Steam
+windowrule = float, title:Picture-in-Picture # Firefox videos
+# windowrule = keepaspectratio on, title:Picture-in-Picture
+windowrule = float, class:^org\.gnome\.FileRoller
+windowrule = float, title:(Friends List) # Steam
 
 # xwaylandvideobridge
-windowrule = opacity 0.0 override, class:^xwaylandvideobridge$
-windowrule = noanim, class:^xwaylandvideobridge$
-windowrule = noinitialfocus, class:^xwaylandvideobridge$
-windowrule = maxsize 1 1, class:^xwaylandvideobridge$
-windowrule = noblur, class:^xwaylandvideobridge$
-windowrule = nofocus, class:^xwaylandvideobridge$
+windowrule = opacity 0.0 override, class:xwaylandvideobridge
+windowrule = noanim, class:xwaylandvideobridge
+windowrule = noinitialfocus, class:xwaylandvideobridge
+windowrule = maxsize 1 1, class:xwaylandvideobridge
+windowrule = noblur, class:xwaylandvideobridge
+windowrule = nofocus, class:xwaylandvideobridge
 
 # forceinput on floating vs code windows
-windowrule = center, class:^Xdg-desktop-portal-gtk$
-windowrule = stayfocused, class:^Xdg-desktop-portal-gtk$ 
-windowrule = center, floating:1,class:^Code$
-windowrule = stayfocused, floating:1,class:^Code$
+windowrule = center, class:Xdg-desktop-portal-gtk
+windowrule = stayfocused, class:Xdg-desktop-portal-gtk
+windowrule = center, floating:1,class:Code
+windowrule = stayfocused, floating:1,class:Code
 
-windowrule = workspace 8, class:^discord$
-windowrule = workspace 8, class:^Slack$
-windowrule = workspace 9, class:^tidal-hifi$
-windowrule = workspace 10, class:^com\.obsproject\.Studio$
-windowrule = move onscreen cursor, class:^galendae$
-windowrule = float, class:^xfce-polkit$
-windowrule = maxsize 410 150, class:^xfce-polkit$
-windowrule = minsize 410 150, class:^xfce-polkit$
-windowrule = stayfocused, class:^xfce-polkit$
+windowrule = workspace 8, class:discord
+windowrule = workspace 8, class:Slack
+windowrule = workspace 9, class:.*tidal-hifi.*
+windowrule = workspace 10, class:com\.obsproject\.Studio
+windowrule = move onscreen cursor, class:galendae
+windowrule = float, class:xfce-polkit
+windowrule = maxsize 410 150, class:xfce-polkit
+windowrule = minsize 410 150, class:xfce-polkit
+windowrule = stayfocused, class:xfce-polkit
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, Return, exec, $terminal
@@ -163,30 +164,29 @@ bind = $mainMod SHIFT, right, exec, $workspace movemonitor
 bind = $mainMod, left, exec, $workspace switchmonitor
 bind = $mainMod, right, exec, $workspace switchmonitor
 
-workspace=1,monitor:{{ .monitors.right }}
-workspace=2,monitor:{{ .monitors.right }}
-workspace=3,monitor:{{ .monitors.right }}
-workspace=4,monitor:{{ .monitors.right }}
-workspace=5,monitor:{{ .monitors.right }}
-workspace=6,monitor:{{ .monitors.left }}
-workspace=7,monitor:{{ .monitors.left }}
-workspace=8,monitor:{{ .monitors.left }}
-workspace=9,monitor:{{ .monitors.left }}
-workspace=10,monitor:{{ .monitors.left }}
+workspace = 1,monitor:{{ .monitors.right }}
+workspace = 2,monitor:{{ .monitors.right }}
+workspace = 3,monitor:{{ .monitors.right }}
+workspace = 4,monitor:{{ .monitors.right }}
+workspace = 5,monitor:{{ .monitors.right }}
+workspace = 6,monitor:{{ .monitors.left }}
+workspace = 7,monitor:{{ .monitors.left }}
+workspace = 8,monitor:{{ .monitors.left }}
+workspace = 9,monitor:{{ .monitors.left }}
+workspace = 10,monitor:{{ .monitors.left }}
 
-workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] kitty -o background_opacity=0.7
+workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] $terminal -o background_opacity=0.7
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
-exec-once=waybar
-exec-once=xwaylandvideobridge
-exec-once=[silent] Discord
-exec-once=[silent] flatpak run com.slack.Slack
-exec-once=[silent] 1password --silent
-exec-once=[silent] 1password --silent
-exec-once=[silent] flatpak run --command=/app/bin/launch.sh com.core447.StreamController -b
-exec-once=hyprpaper
-exec-once=[silent] tidal-hifi
-exec-once=/usr/libexec/xfce-polkit
+exec-once = waybar
+exec-once = [silent] Discord
+exec-once = xwaylandvideobridge
+exec-once = [silent] flatpak run com.slack.Slack
+exec-once = [silent] 1password --silent
+exec-once = [silent] flatpak run --command=/app/bin/launch.sh com.core447.StreamController -b
+exec-once = hyprpaper
+exec-once = [silent] tidal-hifi
+exec-once = /usr/libexec/xfce-polkit
