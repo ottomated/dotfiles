@@ -17,7 +17,7 @@ monitor = ,preferred,auto,1
 $mainMod = SUPER
 
 # Programs
-$terminal = ghostty
+$terminal = kitty
 $fileManager = thunar
 $menu = rofi -show drun -click-to-exit -kb-cancel "Escape,MouseSecondary"
 
@@ -175,7 +175,7 @@ workspace = 8,monitor:{{ .monitors.left }}
 workspace = 9,monitor:{{ .monitors.left }}
 workspace = 10,monitor:{{ .monitors.left }}
 
-workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] $terminal --background-opacity=0.7
+workspace = special:special, on-created-empty:[float;size 50% 70%;center;animation slidefadevert -50%;stayfocused] $terminal -o background_opacity=0.7
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow

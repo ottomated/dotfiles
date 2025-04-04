@@ -5,7 +5,7 @@
 - waybar
 - rofi-wayland
 - thunar
-- ghostty
+- kitty
 - bun
 - bat
 - zoxide

@@ -5,7 +5,7 @@
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
 	<unique-id>1714425345683980-1</unique-id>
-	<command>ghostty -d %f</command>
+	<command>kitty -d %f</command>
 	<description></description>
 	<range></range>
 	<patterns>*</patterns>
