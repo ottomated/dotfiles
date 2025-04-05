@@ -1,7 +1,7 @@
 {
   "monitors": {
     "left": "DP-2",
-    "right": "DP-1"
+    "right": "HDMI-A-1"
   },
   "font": "FiraCode Nerd Font"
 }
