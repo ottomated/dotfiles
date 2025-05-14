@@ -104,6 +104,10 @@ windowrule = float, class:^org\.gnome\.FileRoller
 windowrule = float, title:(Friends List) # Steam
 windowrule = float, title:(File Operation Progress) # Thunar
 
+# GIMP 3.0
+windowrule = float, class:script-fu
+windowrule = float, title:(Export Image as.*)
+
 # xwaylandvideobridge
 windowrule = opacity 0.0 override, class:xwaylandvideobridge
 windowrule = noanim, class:xwaylandvideobridge
@@ -118,6 +122,7 @@ windowrule = stayfocused, class:Xdg-desktop-portal-gtk
 windowrule = center, floating:1,class:Code
 windowrule = stayfocused, floating:1,class:Code
 
+
 windowrule = workspace 8, class:discord
 windowrule = workspace 8, class:Slack
 windowrule = workspace 9, class:.*tidal-hifi.*
@@ -131,7 +136,7 @@ windowrule = stayfocused, class:xfce-polkit
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, Return, exec, $terminal
 bind = $mainMod, T, togglespecialworkspace
-bind = $mainMod, W, exec, $browser
+bind = $mainMod, W, exec, ~/.local/bin/zen
 bind = CONTROLALT, T, exec, $terminal
 bind = CONTROL_SUPER_ALT, Z, exec, systemctl suspend
 bind = CONTROL_SUPER_ALT, S, exec, systemctl poweroff
