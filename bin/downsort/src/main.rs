@@ -73,7 +73,10 @@ fn main() -> anyhow::Result<()> {
 	for file in &current_state.today_files {
 		let time = FileTime::from_last_modification_time(&file.metadata()?);
 		if time < this_morning {
-			set_file_mtime(file, this_morning).context("Could not set file modified time")?;
+			let res = set_file_mtime(file, this_morning);
+			if let Err(err) = res {
+				eprintln!("Could not set file modified time for {file:?}: {err}");
+			}
 		}
 
 		// cap modification time at earliest = this midnight
@@ -95,7 +98,7 @@ fn main() -> anyhow::Result<()> {
 		let current_folder = file.parent().unwrap();
 		if current_folder != target_folder {
 			let target = target_folder.join(file.file_name().unwrap());
-			println!("{file:?} -> {target:?}");
+			// println!("{file:?} -> {target:?}");
 			fs::rename(file, target)?;
 		}
 	}
@@ -112,7 +115,7 @@ fn main() -> anyhow::Result<()> {
 	for (year, days) in current_state.past_years {
 		let folder = downloads_folder.join(format!("old_{}", year));
 		if days.is_empty() {
-			println!("Removing empty folder: {:?}", folder);
+			// println!("Removing empty folder: {:?}", folder);
 			fs::remove_dir_all(folder)?;
 		} else {
 			let timestamp = NaiveDate::from_ymd_opt(year as i32, 12, 31)
@@ -122,7 +125,8 @@ fn main() -> anyhow::Result<()> {
 				.and_utc()
 				.timestamp();
 			let time = FileTime::from_unix_time(timestamp, 0);
-			set_file_mtime(&folder, time).context("Could not set folder modified time")?;
+			set_file_mtime(&folder, time)
+				.with_context(|| format!("Could not set folder modified time for {folder:?}"))?;
 			turn_folder_gray(&folder, &gio);
 
 			for day in days {
@@ -141,7 +145,7 @@ fn turn_folder_gray(folder: &Path, gio: &Option<PathBuf>) {
 	let Some(folder) = folder.to_str() else {
 		return;
 	};
-	println!("Turning {folder:?} gray");
+	// println!("Turning {folder:?} gray");
 	let res = Command::new(gio)
 		.args([
 			"set",
@@ -169,13 +173,14 @@ fn update_day_folder(
 ) -> anyhow::Result<()> {
 	let day_folder = root.join(day.0.to_folder());
 	if day.1.is_empty() {
-		println!("Removing empty folder: {:?}", day_folder);
+		// println!("Removing empty folder: {:?}", day_folder);
 		fs::remove_dir_all(day_folder)?;
 	} else {
 		let timestamp = day.0.to_unix_timestamp(year);
 		let time = FileTime::from_unix_time(timestamp, 0);
 		turn_folder_gray(&day_folder, gio);
-		set_file_mtime(day_folder, time).context("Could not set folder modified time")?;
+		set_file_mtime(&day_folder, time)
+			.with_context(|| format!("Could not set folder modified time for {day_folder:?}"))?;
 	}
 
 	Ok(())
