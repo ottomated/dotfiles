@@ -95,7 +95,6 @@ animations {
 }
 
 dwindle {
-	pseudotile = yes
 	preserve_split = yes
 }
 
@@ -108,7 +107,7 @@ windowrule = float on, match:title (File Operation Progress) # Thunar
 windowrule {
 	name = thunar-rename
 	float = on
-	match:class = Thunar
+	match:class = thunar
 	match:title = ^Rename.+
 }
 windowrule = float on, match:title (Discord Popout)
@@ -142,7 +141,7 @@ windowrule {
   name = slack
   no_screen_share = on
   workspace = 8
-  match:class = Slack
+  match:class = com.slack.Slack
 }
 
 # forceinput on floating vs code windows
@@ -179,7 +178,6 @@ bind = $mainMod, M, exit,
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, V, togglefloating,
 bindr = $mainMod, D, exec, pkill rofi || $menu
-bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen
 bind = , PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots
 bind = $mainMod SHIFT, S, exec, hyprshot -m region -o ~/Pictures/Screenshots
