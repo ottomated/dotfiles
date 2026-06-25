@@ -1,5 +1,5 @@
 require("mason").setup()
-require("mason-tool-installer").setup {
+require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua-language-server",
 		"vim-language-server",
@@ -9,8 +9,9 @@ require("mason-tool-installer").setup {
 		"oxfmt",
 		"prettier",
 		"prettierd",
-	}
-}
+		"stylua",
+	},
+})
 
 local installer = require("tree-sitter-manager.installer")
 local install_func = installer.install
@@ -27,7 +28,8 @@ installer.install = function(lang, callback)
 		local util = require("tree-sitter-manager.util")
 		local tmpdir = vim.fn.tempname()
 		vim.notify("Downloading svelte treesitter queries")
-		util.run_async({ "git", "clone", "--depth=1", "https://github.com/themixednuts/nvim-treesitter-svelte", tmpdir },
+		util.run_async(
+			{ "git", "clone", "--depth=1", "https://github.com/themixednuts/nvim-treesitter-svelte", tmpdir },
 			function(dl_ok)
 				if dl_ok then
 					local source = vim.fs.joinpath(tmpdir, "queries/svelte5")
@@ -35,7 +37,8 @@ installer.install = function(lang, callback)
 				end
 				vim.fn.delete(tmpdir, "rf")
 				callback(dl_ok)
-			end)
+			end
+		)
 	end)
 end
 
@@ -45,24 +48,25 @@ require("tree-sitter-manager").setup({
 		svelte5 = {
 			install_info = {
 				url = "https://github.com/themixednuts/tree-sitter-htmlx",
-				location = "crates/tree-sitter-svelte"
-			}
-		}
-	}
+				location = "crates/tree-sitter-svelte",
+			},
+		},
+	},
 })
 
 vim.treesitter.language.add("svelte5", { symbol_name = "svelte" })
 vim.treesitter.language.register("svelte5", { "svelte" })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "svelte" },
-	callback = function() vim.treesitter.start() end,
+	callback = function()
+		vim.treesitter.start()
+	end,
 	desc = "Auto-enable svelte treesitter",
 })
 
 local blink = require("blink.cmp")
 blink.build():pwait()
 blink.setup()
-
 
 vim.lsp.config("lua_ls", {
 	cmd = { "lua-language-server" },
@@ -80,7 +84,7 @@ vim.lsp.config("lua_ls", {
 			"selene.toml",
 			"selene.yml",
 		},
-		{ ".git" }
+		{ ".git" },
 	},
 	settings = {
 		Lua = {
@@ -91,16 +95,16 @@ vim.lsp.config("lua_ls", {
 				library = {
 					vim.env.VIMRUNTIME,
 					vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+	},
 })
 vim.lsp.enable("lua_ls")
 
 local js_root_markers = {
 	{ "pnpm-lock.yaml", "package-lock.json", "bun.lock", "bun.lockb", "yarn.lock" },
-	{ ".git" }
+	{ ".git" },
 }
 
 vim.lsp.config("vtsls", {
@@ -128,6 +132,6 @@ vim.lsp.config("svelte", {
 				client:notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
 			end,
 		})
-	end
+	end,
 })
 vim.lsp.enable("svelte")
